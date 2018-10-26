@@ -35,6 +35,8 @@ public class HomeController {
         if (result.hasErrors()){
             return "depositform";
         }
+        int currentBalance = getCurrentBalance(transaction.getAccount());
+        transaction.setBalance(currentBalance + transaction.getAmount());
         transactionRepository.save(transaction);
         return "redirect:/";
     }
@@ -53,15 +55,21 @@ public class HomeController {
         if (result.hasErrors()){
             return "withdrawalform";
         }
+        int currentBalance = getCurrentBalance(transaction.getAccount());
+        transaction.setBalance(currentBalance - transaction.getAmount());
         transactionRepository.save(transaction);
         return "redirect:/";
     }
 
+    private int getCurrentBalance(String account){
+        Iterable<Transaction> transactions = transactionRepository.findAll();
+        int balance = 0;
+        for(Transaction t: transactions) {
+            if(t.getAccount().equals(account)){
+                balance += t.getAction().equals("deposit")? t.getAmount(): -t.getAmount();
+            }
 
-
-
-
-
-
-
+        }
+        return balance;
+    }
 }
