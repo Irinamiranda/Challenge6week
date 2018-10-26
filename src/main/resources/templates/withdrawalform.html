@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Withdrawal Form</title>
+</head>
+<body>
+<form action="#"
+      th:action="@{/process}"
+      th:object="${transaction}"
+      method="post">
+    <input type="hidden" th:field="*{id}"/>
+    Account: <input type="text" th:field="*{account}"/>
+    <span th:if="${#fields.hasErrors('account')}"
+          th:errors="*{account}"></span><br/>
+    Action: <input type="text" th:field="*{action}"/>
+    <span th:if="${#fields.hasErrors('action')}"
+          th:errors="*{action}"></span><br/>
+    Reason: <textarea rows="3" th:field="*{reason}"/>
+    <span th:if="${#fields.hasErrors('reason')}"
+          th:errors="*{reason}"></span><br/>
+    Amount: <input type="text" th:field="*{amount}"/>
+    <span th:if="${#fields.hasErrors('amount')}"
+          th:errors="*{amount}"></span><br/>
+    <br/>
+    <input type="submit" value="Submit" />
+
+</form>
+
+</body>
+</html>

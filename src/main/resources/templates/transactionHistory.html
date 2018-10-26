@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction History</title>
+</head>
+<body>
+<a href="/">Show All Transactions</a><br/>
+Account:<span th:text="${transaction.account}"></span><br/>
+Action:<span th:text="${transaction.action}"></span><br/>
+Reason:<span th:text="${transaction.reason}"></span><br/>
+Amount:<span th:text="${transaction.amount}"></span><br/>
+</body>
+</html>
