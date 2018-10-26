@@ -16,18 +16,21 @@ public class HomeController {
     TransactionRepository transactionRepository;
 
     @RequestMapping("/")
-    public String listCourses(Model model){
+    public String listTransactions(Model model){
         model.addAttribute("transactions", transactionRepository.findAll());
         return "transactionHistory";
     }
 
     @GetMapping("/deposit")
     public String depositForm(Model model){
-        model.addAttribute("transactions", new Transaction());
+        Transaction depositTransaction = new Transaction();
+        depositTransaction.setAction("deposit");
+
+        model.addAttribute("transaction", depositTransaction);
         return "depositform";
     }
 
-    @PostMapping("/process")
+    @PostMapping("/processDeposit")
     public String processDepositForm(@Valid Transaction transaction, BindingResult result){
         if (result.hasErrors()){
             return "depositform";
@@ -38,12 +41,14 @@ public class HomeController {
 
     @GetMapping("/withdrawal")
     public String withdrawalForm(Model model){
-        model.addAttribute("transactions", new Transaction());
+        Transaction withdrawalTransaction = new Transaction();
+        withdrawalTransaction.setAction("withdrawal");
+
+        model.addAttribute("transaction", withdrawalTransaction);
         return "withdrawalform";
     }
 
-
-    @PostMapping("/process")
+    @PostMapping("/processWithdrawal")
     public String processWithdrawalForm(@Valid Transaction transaction, BindingResult result){
         if (result.hasErrors()){
             return "withdrawalform";
@@ -51,6 +56,8 @@ public class HomeController {
         transactionRepository.save(transaction);
         return "redirect:/";
     }
+
+
 
 
 

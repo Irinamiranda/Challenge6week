@@ -5,10 +5,21 @@
     <title>Transaction History</title>
 </head>
 <body>
-<a href="/">Show All Transactions</a><br/>
-Account:<span th:text="${transaction.account}"></span><br/>
-Action:<span th:text="${transaction.action}"></span><br/>
-Reason:<span th:text="${transaction.reason}"></span><br/>
-Amount:<span th:text="${transaction.amount}"></span><br/>
+<a href="/deposit">Make a Deposit</a>
+<a href="/withdrawal">Withdrawal money</a>
+<table>
+    <tr>
+        <th>Account</th>
+        <th>Action</th>
+        <th>Reason</th>
+        <th>Amount</th>
+    </tr>
+    <tr th:each="transaction:${transactions}">
+        <td th:text="${transaction.account}"></td>
+        <td th:text="${transaction.action}"></td>
+        <td th:text="${transaction.reason}"></td>
+        <td th:text="${transaction.amount}"></td>
+    </tr>
+</table>
 </body>
 </html>

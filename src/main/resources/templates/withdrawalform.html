@@ -6,16 +6,18 @@
 </head>
 <body>
 <form action="#"
-      th:action="@{/process}"
+      th:action="@{/processWithdrawal}"
       th:object="${transaction}"
       method="post">
     <input type="hidden" th:field="*{id}"/>
+    <input type="hidden" th:field="*{action}"/>
+    Operation: <span th:text="*{action}"/><br/>
     Account: <input type="text" th:field="*{account}"/>
     <span th:if="${#fields.hasErrors('account')}"
           th:errors="*{account}"></span><br/>
-    Action: <input type="text" th:field="*{action}"/>
+    <!--Action: <input type="text" th:field="*{action}"/>
     <span th:if="${#fields.hasErrors('action')}"
-          th:errors="*{action}"></span><br/>
+          th:errors="*{action}"></span><br/-->
     Reason: <textarea rows="3" th:field="*{reason}"/>
     <span th:if="${#fields.hasErrors('reason')}"
           th:errors="*{reason}"></span><br/>

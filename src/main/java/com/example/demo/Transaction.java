@@ -11,15 +11,15 @@ import javax.validation.constraints.Size;
 @Entity
 public class Transaction {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotNull
-    @Size(min=4)
+    @Size(min = 4)
     private String account;
 
     @NotNull
-    @Size(min=5)
+    @Size(min = 5)
     private String action;
 
     @NotNull
@@ -27,7 +27,7 @@ public class Transaction {
     private int amount;
 
     @NotNull
-    @Size(min=3)
+    @Size(min = 3)
     private String reason;
 
 
